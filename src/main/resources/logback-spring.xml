@@ -43,6 +43,11 @@
             <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
         </encoder>
     </appender>
+    
+    <logger name="com.raishin.mapper" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="STDOUT" />
+    </logger>
 
     <!--rootログレベルと使用出力ルール -->
     <root level="INFO">
