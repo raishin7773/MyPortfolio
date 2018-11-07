@@ -42,7 +42,7 @@
 				<div class="form-group has-feedback">
 					<input type="password" class="form-control" th:field="*{password}" placeholder="Password" />
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red"></span>
+					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span>
 				</div>
 
 				<!-- ボタン グリッドでセンタリング-->

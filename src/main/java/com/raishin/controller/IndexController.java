@@ -2,6 +2,7 @@ package com.raishin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,19 +29,19 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/login")
-	public String login(@ModelAttribute("indexForm") @Validated IndexForm form, BindingResult result) {
+	public String login(@ModelAttribute("indexForm") @Validated IndexForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "index";
 		}
-		System.out.println(form.getEmail());
-		System.out.println(form.getPassword());
-		// Logger logger = LoggerFactory.getLogger("Main");
-		// logger.info("loggerTest");
 		IndexEntity entity = indexMapper.selectLogin(form);
-		if (entity != null && entity.getEmail().equals(form.getEmail())) {
-			System.out.println("success");
+		if (entity == null || !entity.getEmail().equals(form.getEmail())
+				|| !entity.getPassword().equals(form.getPassword())) {
+			result.rejectValue("email", "notlogin");
+			return "index";
 		}
-		return "starter";
+
+		// return "redirect:/deck/list";
+		return "forward:/deck/list";
 	}
 
 }
