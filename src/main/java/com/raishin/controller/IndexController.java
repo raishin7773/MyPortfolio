@@ -41,7 +41,7 @@ public class IndexController {
     }
 
     // return "redirect:/deck/list";
-    return "redirect:/deck/list";
+    return "redirect:/useTools/index";
   }
 
 }
