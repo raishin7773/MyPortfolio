@@ -2,91 +2,99 @@ package com.raishin.form;
 
 import java.sql.Date;
 import java.util.List;
-
 import javax.validation.constraints.NotEmpty;
-
 import com.raishin.entity.DeckEntity;
 
 public class DeckForm {
 
-	private int id;
+  private int id;
 
-	@NotEmpty
-	private String deckName;
+  @NotEmpty
+  private String deckName;
 
-	private int win;
+  private int win;
 
-	private int lose;
+  private int lose;
 
-	private int draw;
+  private int draw;
 
-	private Date createDate;
+  private String winningPercentage;
 
-	private Date updateDate;
+  private Date createDate;
 
-	private List<DeckEntity> deckList;
+  private Date updateDate;
 
-	public int getId() {
-		return id;
-	}
+  private List<DeckEntity> deckList;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+  public int getId() {
+    return id;
+  }
 
-	public String getDeckName() {
-		return deckName;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
 
-	public void setDeckName(String deckName) {
-		this.deckName = deckName;
-	}
+  public String getDeckName() {
+    return deckName;
+  }
 
-	public int getWin() {
-		return win;
-	}
+  public void setDeckName(String deckName) {
+    this.deckName = deckName;
+  }
 
-	public void setWin(int win) {
-		this.win = win;
-	}
+  public int getWin() {
+    return win;
+  }
 
-	public int getLose() {
-		return lose;
-	}
+  public void setWin(int win) {
+    this.win = win;
+  }
 
-	public void setLose(int lose) {
-		this.lose = lose;
-	}
+  public int getLose() {
+    return lose;
+  }
 
-	public int getDraw() {
-		return draw;
-	}
+  public void setLose(int lose) {
+    this.lose = lose;
+  }
 
-	public void setDraw(int draw) {
-		this.draw = draw;
-	}
+  public int getDraw() {
+    return draw;
+  }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+  public void setDraw(int draw) {
+    this.draw = draw;
+  }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+  public Date getCreateDate() {
+    return createDate;
+  }
 
-	public Date getUpdateDate() {
-		return updateDate;
-	}
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
+  }
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
+  public Date getUpdateDate() {
+    return updateDate;
+  }
 
-	public List<DeckEntity> getDeckList() {
-		return deckList;
-	}
+  public void setUpdateDate(Date updateDate) {
+    this.updateDate = updateDate;
+  }
 
-	public void setDeckList(List<DeckEntity> deckList) {
-		this.deckList = deckList;
-	}
+  public List<DeckEntity> getDeckList() {
+    return deckList;
+  }
+
+  public void setDeckList(List<DeckEntity> deckList) {
+    this.deckList = deckList;
+  }
+
+  public String getWinningPercentage() {
+    return new Integer(Math.round(win / (win + lose + draw) * 100)).toString();
+  }
+
+  public void setWinningPercentage(String winningPercentage) {
+    this.winningPercentage = winningPercentage;
+  }
 }

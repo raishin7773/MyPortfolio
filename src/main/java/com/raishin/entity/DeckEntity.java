@@ -4,74 +4,78 @@ import java.sql.Date;
 
 public class DeckEntity {
 
-	private int id;
+  private int id;
 
-	private String deckName;
+  private String deckName;
 
-	private int win;
+  private int win;
 
-	private int lose;
+  private int lose;
 
-	private int draw;
+  private int draw;
 
-	private Date createDate;
+  private Date createDate;
 
-	private Date updateDate;
+  private Date updateDate;
 
-	public int getId() {
-		return id;
-	}
+  public Integer getWinningPercentage() {
+    return new Integer(Math.round(win / (win + lose + draw) * 100));
+  }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+  public int getId() {
+    return id;
+  }
 
-	public String getDeckName() {
-		return deckName;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
 
-	public void setDeckName(String deckName) {
-		this.deckName = deckName;
-	}
+  public String getDeckName() {
+    return deckName;
+  }
 
-	public int getWin() {
-		return win;
-	}
+  public void setDeckName(String deckName) {
+    this.deckName = deckName;
+  }
 
-	public void setWin(int win) {
-		this.win = win;
-	}
+  public int getWin() {
+    return win;
+  }
 
-	public int getLose() {
-		return lose;
-	}
+  public void setWin(int win) {
+    this.win = win;
+  }
 
-	public void setLose(int lose) {
-		this.lose = lose;
-	}
+  public int getLose() {
+    return lose;
+  }
 
-	public int getDraw() {
-		return draw;
-	}
+  public void setLose(int lose) {
+    this.lose = lose;
+  }
 
-	public void setDraw(int draw) {
-		this.draw = draw;
-	}
+  public int getDraw() {
+    return draw;
+  }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+  public void setDraw(int draw) {
+    this.draw = draw;
+  }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+  public Date getCreateDate() {
+    return createDate;
+  }
 
-	public Date getUpdateDate() {
-		return updateDate;
-	}
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
+  }
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
+  public Date getUpdateDate() {
+    return updateDate;
+  }
+
+  public void setUpdateDate(Date updateDate) {
+    this.updateDate = updateDate;
+  }
 
 }
