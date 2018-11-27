@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout :: layout(~{::style},~{::body/content()})}">
+<head>
+<title>トップページ</title>
+<style></style>
+
+</head>
+<body class=" skin-blue sidebar-mini">
+	<div class="wrapper">
+		<div class="content-wrapper">
+			<section class="content">
+				<div class="box box-warning">
+					<div class="box-header with-border">
+						<h3 class="box-title">お問い合わせ内容確認</h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<div class="callout callout-danger">
+							<h2 th:text="下記内容を送信しますか？"></h2>
+						</div>
+						<form th:action="@{/inquiry/result}" th:object="${inquiryForm}" method="post">
+							<div class="form-group">
+								<label>お名前</label> <label th:field="*{name}" th:text="*{name}" class="form-control"></label>
+							</div>
+							<div class="form-group">
+								<label>メールアドレス</label>
+								<label th:field="*{email}" th:text="*{email}" class="form-control" ></label>
+							</div>
+							<div class="form-group">
+								<label>お問い合わせ内容</label>
+								<label class="form-control" th:text="*{inquiry}" th:field="*{inquiry}"></label>
+							</div>
+							<button type="submit" th:name="cansel" class="btn-lg btn-primary">キャンセル</button>
+						　　 <button type="submit" th:name="send" class="btn-lg btn-primary pull-right">送信</button>
+						</form>
+					</div>
+				</div>
+			</section>
+			<section class="content container-fluid"></section>
+		</div>
+	</div>
+	<script>
+    jQuery(function($) {
+      $('#inquiry-menu').removeClass('active').addClass('active');
+    });
+  </script>
+</body>
+
+</html>
