@@ -23,10 +23,10 @@ public class InquiryController {
   @RequestMapping(value = "/inquiry/send")
   public String send(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
-    return "inquiry_result";
+    return "inquiry_confirm";
   }
 
-  @RequestMapping(value = "/inquiry/result", params = "cansel", method = RequestMethod.POST)
+  @RequestMapping(value = "/inquiry/confirm", params = "cansel", method = RequestMethod.POST)
   public String cansel(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
     return "inquiry_index";
@@ -35,15 +35,15 @@ public class InquiryController {
   @Autowired
   private MailSender sender;
 
-  @RequestMapping(value = "/inquiry/result", params = "send", method = RequestMethod.POST)
+  @RequestMapping(value = "/inquiry/confirm", params = "send", method = RequestMethod.POST)
   public String sendmail(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
     SimpleMailMessage msg = new SimpleMailMessage();
 
-    msg.setFrom("test@mail.com");
+    // msg.setFrom(form.getEmail());
     msg.setTo("raishin7773@gmail.com");
-    msg.setSubject("テストメール"); // タイトルの設定
-    msg.setText("Spring Boot より本文送信"); // 本文の設定
+    msg.setSubject("問い合わせ"); // タイトルの設定
+    msg.setText("email:" + form.getEmail() + "　問い合わせ内容" + form.getInquiry()); // 本文の設定
 
     this.sender.send(msg);
     return "inquiry_result";
