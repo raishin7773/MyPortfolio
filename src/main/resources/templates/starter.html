@@ -44,7 +44,7 @@
 									</div>
 								</div>
 								<div class="box-body">
-									 <canvas id="barChart" style="height: 250px"></canvas> 
+									<canvas id="barChart" style="height: 250px"></canvas>
 								</div>
 								<!-- /.box-body -->
 							</div>
@@ -73,7 +73,7 @@
 									<tbody>
 										<tr th:each="deck : ${deckForm.deckList}">
 											<td>
-												<p th:text="${deck.deckName}" />
+												<span th:text="${deck.deckName}"></span> <i class="fa fa-trash-o pull-right"></i> <i class="fa fa-pencil pull-right"></i>
 											</td>
 											<td>
 												<p th:text="${deck.win}" />
@@ -90,6 +90,9 @@
 										</tr>
 									</tbody>
 								</table>
+							</div>
+							<div class="box-footer">
+								
 							</div>
 						</div>
 					</div>
