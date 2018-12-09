@@ -43,6 +43,6 @@ public class InquiryController {
     // msg.setText("email:" + form.getEmail() + " 問い合わせ内容" + form.getInquiry()); // 本文の設定
     //
     // this.sender.send(msg);
-    return "inquiry/result";
+    return "inquiry_result";
   }
 }
