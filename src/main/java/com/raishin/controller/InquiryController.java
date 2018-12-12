@@ -33,7 +33,7 @@ public class InquiryController {
   }
 
   @Autowired
-  JavaMailSender sender;
+  public JavaMailSender sender;
 
   @RequestMapping(value = "/inquiry/confirm", params = "send", method = RequestMethod.POST)
   public String sendmail(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
