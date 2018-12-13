@@ -1,8 +1,8 @@
 package com.raishin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +33,7 @@ public class InquiryController {
   }
 
   @Autowired
-  public JavaMailSender sender;
+  private MailSender sender;
 
   @RequestMapping(value = "/inquiry/confirm", params = "send", method = RequestMethod.POST)
   public String sendmail(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
