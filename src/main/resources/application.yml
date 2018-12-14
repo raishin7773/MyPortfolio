@@ -14,12 +14,14 @@ spring:
     port: 587
     username: ${mailaddress}
     password: ${mailpass}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
 ---
     
 server:
