@@ -20,8 +20,9 @@ spring:
 #          auth: true
 #          starttls:
 #            enable: true
-    properties.mail.smtp.auth: true
-    properties.mail.smtp.starttls.enable: true
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
 ---
     
 server:
