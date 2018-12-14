@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import com.raishin.form.DeckForm;
 import com.raishin.mapper.DeckMapper;
 
 @Controller
+@MapperScan("com.raishin.mapper")
 public class DeckController {
 
   @Autowired
