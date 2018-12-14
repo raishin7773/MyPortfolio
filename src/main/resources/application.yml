@@ -1,30 +1,24 @@
-spring:
-  profiles:
-    active: pos
-    
----
-spring:
-  profiles: pos
-  datasource:
-    driverClassName: org.postgresql.Driver
-    url: ${databaseurl}
-    username: raishin
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${mailaddress}
-    password: ${mailpass}
+#spring:
+#  profiles:
+#    active: pos
+#    
+#---
+#spring:
+#  profiles: pos
+#  datasource:
+#    driverClassName: org.postgresql.Driver
+#    url: ${databaseurl}
+#    username: raishin
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: ${mailaddress}
+#    password: ${mailpass}
 #    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-    properties:
-      mail.smtp.auth: true
-      mail.smtp.starttls.enable: true
----
-    
-server:
-    port: 5000
-    
+#      mail.smtp.auth: true
+#      mail.smtp.starttls.enable: true
+#---
+#    
+#server:
+#    port: 5000
+#    
