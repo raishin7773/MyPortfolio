@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.raishin</groupId>
-	<artifactId>mybatistest</artifactId>
+	<artifactId>MyPortfolio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mybatistest</name>
+	<name>MyPortfolio</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -62,10 +62,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sendgrid</groupId>
-			<artifactId>sendgrid-java</artifactId>
 		</dependency>
 	</dependencies>
 
