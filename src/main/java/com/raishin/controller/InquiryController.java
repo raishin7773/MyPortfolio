@@ -14,6 +14,9 @@ public class InquiryController {
   @RequestMapping(value = "/inquiry/index")
   public String index(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
+    System.out.println(System.getenv("databaseurl"));
+    System.out.println(System.getenv("username"));
+    System.out.println(System.getenv("password"));
     return "inquiry/index";
   }
 
@@ -26,6 +29,7 @@ public class InquiryController {
   @RequestMapping(value = "/inquiry/confirm", params = "cansel", method = RequestMethod.POST)
   public String cansel(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
+
     return "inquiry/index";
   }
 
