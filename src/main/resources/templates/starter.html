@@ -73,7 +73,7 @@
 									<tbody>
 										<tr th:each="deck : ${deckForm.deckList}">
 											<td>
-												<span th:text="${deck.deckName}"></span> <i class="fa fa-trash-o pull-right"></i> <i class="fa fa-pencil pull-right"></i>
+												<span th:text="${deck.deckname}"></span> <i class="fa fa-trash-o pull-right"></i> <i class="fa fa-pencil pull-right"></i>
 											</td>
 											<td>
 												<p th:text="${deck.win}" />
@@ -125,7 +125,7 @@
       type: 'pie',
       data: {
           // コントローラーで格納したlabelを変数式で取り出すだけ。
-          labels: /*[[ ${deckNameList} ]]*/,
+          labels: /*[[ ${decknameList} ]]*/,
           datasets: [
               {
                   label: "使用デッキ",

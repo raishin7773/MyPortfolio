@@ -32,12 +32,12 @@ public class DeckEntity {
     this.id = id;
   }
 
-  public String getDeckName() {
+  public String getDeckname() {
     return deckname;
   }
 
-  public void setDeckName(String deckName) {
-    this.deckname = deckName;
+  public void setDeckname(String deckname) {
+    this.deckname = deckname;
   }
 
   public int getWin() {
@@ -79,6 +79,7 @@ public class DeckEntity {
   public void setUpdate_Date(Date update_Date) {
     this.update_Date = update_Date;
   }
+
 
 
 }
