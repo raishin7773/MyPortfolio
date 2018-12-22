@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.raishin.entity.DeckEntity;
 import com.raishin.form.DeckForm;
-import com.raishin.mapper.DeckMapper;
+import com.raishin.repository.DeckRepository;
 
 @Controller
 public class DeckController {
 
+  // @Autowired
+  // DeckMapper mapper;
+
   @Autowired
-  DeckMapper mapper;
+  DeckRepository deckRepository;
 
   Random random = new Random();
 
@@ -28,7 +31,7 @@ public class DeckController {
     List<String> deckNameList = new ArrayList<>();
     List<String> backColorList = new ArrayList<>();
     List<Integer> duelNumberList = new ArrayList<>();
-    List<DeckEntity> entityList = mapper.selectAll();
+    List<DeckEntity> entityList = deckRepository.findAll();
     entityList.stream().forEach(x -> deckNameList.add(x.getDeckName()));
     entityList.stream().forEach(x -> duelNumberList.add(x.getWin() + x.getLose() + x.getDraw()));
     entityList.stream().forEach(x -> backColorList.add("rgb(" + random.nextInt(256) + ", "

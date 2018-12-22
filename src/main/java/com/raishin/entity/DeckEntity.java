@@ -1,12 +1,18 @@
 package com.raishin.entity;
 
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "mydeck")
 public class DeckEntity {
 
+  @Id
   private int id;
 
-  private String deckName;
+  private String deckname;
 
   private int win;
 
@@ -14,13 +20,9 @@ public class DeckEntity {
 
   private int draw;
 
-  private Date createDate;
+  private Date create_Date;
 
-  private Date updateDate;
-
-  public Integer getWinningPercentage() {
-    return new Integer(Math.round(win / (win + lose + draw) * 100));
-  }
+  private Date update_Date;
 
   public int getId() {
     return id;
@@ -31,11 +33,11 @@ public class DeckEntity {
   }
 
   public String getDeckName() {
-    return deckName;
+    return deckname;
   }
 
   public void setDeckName(String deckName) {
-    this.deckName = deckName;
+    this.deckname = deckName;
   }
 
   public int getWin() {
@@ -62,20 +64,21 @@ public class DeckEntity {
     this.draw = draw;
   }
 
-  public Date getCreateDate() {
-    return createDate;
+  public Date getCreate_Date() {
+    return create_Date;
   }
 
-  public void setCreateDate(Date createDate) {
-    this.createDate = createDate;
+  public void setCreate_Date(Date create_Date) {
+    this.create_Date = create_Date;
   }
 
-  public Date getUpdateDate() {
-    return updateDate;
+  public Date getUpdate_Date() {
+    return update_Date;
   }
 
-  public void setUpdateDate(Date updateDate) {
-    this.updateDate = updateDate;
+  public void setUpdate_Date(Date update_Date) {
+    this.update_Date = update_Date;
   }
+
 
 }
