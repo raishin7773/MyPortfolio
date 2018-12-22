@@ -14,9 +14,10 @@ public class InquiryController {
   @RequestMapping(value = "/inquiry/index")
   public String index(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
-    System.out.println(System.getenv("databaseurl"));
-    System.out.println(System.getenv("username"));
-    System.out.println(System.getenv("password"));
+    System.out.println("hostname=" + System.getenv("hostname"));
+    System.out.println("dbname=" + System.getenv("dbname"));
+    System.out.println("username=" + System.getenv("username"));
+    System.out.println("password=" + System.getenv("password"));
     return "inquiry/index";
   }
 
