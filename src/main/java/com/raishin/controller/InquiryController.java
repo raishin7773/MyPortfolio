@@ -1,5 +1,8 @@
 package com.raishin.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -28,7 +31,7 @@ public class InquiryController {
 
     // 値の取得
     System.out.println(eivironment.getProperty("spring.datasource.url"));
-
+    
     return "inquiry/index";
   }
 
