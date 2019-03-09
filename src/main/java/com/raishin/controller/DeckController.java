@@ -1,18 +1,14 @@
 package com.raishin.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.raishin.entity.DeckEntity;
 import com.raishin.form.DeckForm;
 import com.raishin.repository.DeckRepository;
+import com.raishin.service.DeckService;
 
 @Controller
 public class DeckController {
@@ -23,28 +19,24 @@ public class DeckController {
   @Autowired
   DeckRepository deckRepository;
 
-  Random random = new Random();
+  @Autowired
+  DeckService deckService;
+
+
 
   @RequestMapping(value = "/deck/list")
   public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) {
-    List<String> decknameList = new ArrayList<>();
-    List<String> backColorList = new ArrayList<>();
-    List<Integer> duelNumberList = new ArrayList<>();
-    List<DeckEntity> entityList = deckRepository.findAll();
-    entityList.stream().forEach(x -> decknameList.add(x.getDeckname()));
-    entityList.stream().forEach(x -> duelNumberList.add(x.getWin() + x.getLose() + x.getDraw()));
-    entityList.stream().forEach(x -> backColorList.add("rgb(" + random.nextInt(256) + ", "
-        + random.nextInt(256) + ", " + random.nextInt(256) + ")"));
+    deckService.initView(form, model);
+    return "deck/starter";
+  }
 
-    model.addAttribute("backColorList", backColorList);
-    model.addAttribute("decknameList", decknameList);
-    model.addAttribute("duelNumberList", duelNumberList);
-    model.addAttribute("TopFiveNameList",
-        decknameList.stream().limit(5).collect(Collectors.toList()));
-    model.addAttribute("TopFiveNumberList",
-        duelNumberList.stream().limit(5).collect(Collectors.toList()));
-    form.setDeckList(entityList);
-    return "starter";
+  @RequestMapping(value = "/deck/delete")
+  public String delete(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+      Model model) {
+    deckService.deckDelete(form);
+    model.addAttribute("message", "削除しました");
+    deckService.initView(form, model);
+    return "deck/starter";
   }
 }

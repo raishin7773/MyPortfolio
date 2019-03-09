@@ -13,6 +13,6 @@ public class UseToolsController {
   @RequestMapping(value = "/useTools/index")
   public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) {
-    return "useTools_index";
+    return "useTools/index";
   }
 }

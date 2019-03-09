@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout :: layout(~{::style},~{::body/content()})}">
+<head>
+<title>メモ</title>
+<style></style>
+
+</head>
+<body class=" skin-blue sidebar-mini">
+	<div class="wrapper">
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content">
+			<form action="" th:action="@{/memo/update}" method="post">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">メモ</h3>
+							</div>
+							<div class="box-body">
+								<textarea rows="20" th:text="${memoForm.memo}" name="memo" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button name="updateBtn" class="btn-lg btn-primary pull-right">更新</button>
+			</form>
+			</section>
+			<section class="content container-fluid"></section>
+		</div>
+	</div>
+	<script>
+    jQuery(function($) {
+      $('#memo-menu').removeClass('active').addClass('active');
+    });
+  </script>
+</body>
+
+</html>

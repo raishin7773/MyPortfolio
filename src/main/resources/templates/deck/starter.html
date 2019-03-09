@@ -73,7 +73,9 @@
 									<tbody>
 										<tr th:each="deck : ${deckForm.deckList}">
 											<td>
-												<span th:text="${deck.deckname}"></span> <i class="fa fa-trash-o pull-right"></i> <i class="fa fa-pencil pull-right"></i>
+												<span th:text="${deck.deckname}"></span> 
+												<a name="trashBtn" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${deck.id}"><i class="fa fa-trash-o pull-right" ></i></a> 
+												<i class="fa fa-pencil pull-right"></i>
 											</td>
 											<td>
 												<p th:text="${deck.win}" />
@@ -101,67 +103,92 @@
 			<section class="content container-fluid"></section>
 		</div>
 	</div>
-	<script>
-    jQuery(function($) {
-      $
-              .extend(
-                      $.fn.dataTable.defaults,
-                      {
-                        language: {
-                          url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
-                        }
-                      });
+<!-- 削除モーダル -->
+<div class="modal" id="deleteModal" tabindex="-1">
+	<form th:action="@{/deck/delete}">
+		<input type="hidden" name="id" id="deleteTargetId">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+					<h4 class="modal-title">削除確認</h4>
+				</div>
+				<div class="modal-body">
+					削除しますか？
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+					<button class="btn btn-primary">削除する</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+   jQuery(function($) {
+     $('a[name=trashBtn]').click(function() {
+       var dataid = $(this).attr("data-id") ;
+       $('#deleteTargetId').val(dataid);
+     });
+     
+     $.extend(
+        $.fn.dataTable.defaults,
+        {
+          language: {
+            url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+          }
+        });
 
-      $("#decktable").DataTable({
-        order: []
-      });
-      $('#decklist-menu').removeClass('active').addClass('active');
-    });
-  </script>
-	<script type="text/javascript" th:inline="javascript">
-	/*<![CDATA[*/
-  var ctx = document.getElementById("pieChart").getContext('2d');
-  var ChartDemo = new Chart(ctx, {
-      type: 'pie',
-      data: {
-          // コントローラーで格納したlabelを変数式で取り出すだけ。
-          labels: /*[[ ${decknameList} ]]*/,
-          datasets: [
-              {
-                  label: "使用デッキ",
-                  backgroundColor: /*[[ ${backColorList} ]]*/,
-                  data: /*[[ ${duelNumberList} ]]*/,
-              },
-          ]
-      },
-      options: {
-          responsive: true,
-      }
-  });
+     $("#decktable").DataTable({
+       order: []
+     });
+     $('#decklist-menu').removeClass('active').addClass('active');
+   });
+ </script>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+ var ctx = document.getElementById("pieChart").getContext('2d');
+ var ChartDemo = new Chart(ctx, {
+     type: 'pie',
+     data: {
+         // コントローラーで格納したlabelを変数式で取り出すだけ。
+         labels: /*[[ ${decknameList} ]]*/,
+         datasets: [
+             {
+                 label: "使用デッキ",
+                 backgroundColor: /*[[ ${backColorList} ]]*/,
+                 data: /*[[ ${duelNumberList} ]]*/,
+             },
+         ]
+     },
+     options: {
+         responsive: true,
+     }
+ });
   
-  var ctx = document.getElementById("barChart").getContext('2d');
-  var ChartDemo = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          // コントローラーで格納したlabelを変数式で取り出すだけ。
-          labels: /*[[ ${TopFiveNameList} ]]*/,
-          datasets: [
-              {
-                  label: "使用数Top5",
-                  backgroundColor: /*[[ ${backColorList} ]]*/,
-                  data: /*[[ ${TopFiveNumberList} ]]*/,
-              },
-          ]
-      },
-      options: {
-          responsive: true,
-          legend: {                          //凡例設定
-            display: false                 //表示設定
-       },
-      }
-  });
-  /*]]>*/
-  </script>
+var ctx = document.getElementById("barChart").getContext('2d');
+var ChartDemo = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        // コントローラーで格納したlabelを変数式で取り出すだけ。
+        labels: /*[[ ${TopFiveNameList} ]]*/,
+        datasets: [
+            {
+                label: "使用数Top5",
+                backgroundColor: /*[[ ${backColorList} ]]*/,
+                data: /*[[ ${TopFiveNumberList} ]]*/,
+            },
+        ]
+    },
+    options: {
+        responsive: true,
+        legend: {                          //凡例設定
+          display: false                 //表示設定
+     },
+    }
+});
+/*]]>*/
+</script>
 </body>
 
 </html>

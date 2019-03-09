@@ -7,16 +7,16 @@ import com.raishin.entity.DeckEntity;
 
 public class DeckForm {
 
-  private int id;
+  private Integer id;
 
   @NotEmpty
   private String deckName;
 
-  private int win;
+  private Integer win;
 
-  private int lose;
+  private Integer lose;
 
-  private int draw;
+  private Integer draw;
 
   private String winningPercentage;
 
@@ -26,11 +26,11 @@ public class DeckForm {
 
   private List<DeckEntity> deckList;
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -42,27 +42,27 @@ public class DeckForm {
     this.deckName = deckName;
   }
 
-  public int getWin() {
+  public Integer getWin() {
     return win;
   }
 
-  public void setWin(int win) {
+  public void setWin(Integer win) {
     this.win = win;
   }
 
-  public int getLose() {
+  public Integer getLose() {
     return lose;
   }
 
-  public void setLose(int lose) {
+  public void setLose(Integer lose) {
     this.lose = lose;
   }
 
-  public int getDraw() {
+  public Integer getDraw() {
     return draw;
   }
 
-  public void setDraw(int draw) {
+  public void setDraw(Integer draw) {
     this.draw = draw;
   }
 
