@@ -68,14 +68,14 @@
 											<th>引き分け</th>
 											<th>敗北</th>
 											<th>決闘数</th>
+											<th></th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="deck : ${deckForm.deckList}">
 											<td>
 												<span th:text="${deck.deckname}"></span> 
-												<a name="trashBtn" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${deck.id}"><i class="fa fa-trash-o pull-right" ></i></a> 
-												<i class="fa fa-pencil pull-right"></i>
 											</td>
 											<td>
 												<p th:text="${deck.win}" />
@@ -88,6 +88,12 @@
 											</td>
 											<td>
 												<p th:text="${deck.lose + deck.win + deck.draw}" />
+											</td>
+											<td>
+												<a name="trashBtn" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${deck.id}"><i class="fa fa-pencil pull-right"></i></a>
+											</td>
+											<td>
+												<a name="trashBtn" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${deck.id}"><i class="fa fa-trash-o pull-right" ></i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -140,7 +146,12 @@
         });
 
      $("#decktable").DataTable({
-       order: []
+    	order: [],
+		columnDefs: [
+		    // 2列目(0から始まるため1になっています)の幅を100pxにする
+		    { targets: 5, width: 2 },
+		    { targets: 6, width: 2 },
+		]
      });
      $('#decklist-menu').removeClass('active').addClass('active');
    });
@@ -178,7 +189,8 @@ var ChartDemo = new Chart(ctx, {
                 backgroundColor: /*[[ ${backColorList} ]]*/,
                 data: /*[[ ${TopFiveNumberList} ]]*/,
             },
-        ]
+        ],
+
     },
     options: {
         responsive: true,
