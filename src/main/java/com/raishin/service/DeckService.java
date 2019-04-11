@@ -1,5 +1,6 @@
 package com.raishin.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import com.raishin.entity.DeckEntity;
 import com.raishin.form.DeckForm;
 import com.raishin.repository.DeckRepository;
@@ -24,6 +26,33 @@ public class DeckService {
     if (form.getId() != null) {
       deckRepository.deleteById(form.getId());
     }
+  }
+  
+  @Transactional(readOnly = false)
+  public void deckUpdate(DeckForm form) throws Exception {
+    DeckEntity deckEntity = new DeckEntity();
+    if(StringUtils.isEmpty(form.getId())) throw new Exception();
+    deckEntity.setId(form.getId());
+    deckEntity.setDeckname(form.getDeckName());
+    deckEntity.setWin(form.getWin());
+    deckEntity.setDraw(form.getDraw());
+    deckEntity.setLose(form.getLose());
+    deckEntity.setCreate_Date(new Date(System.currentTimeMillis()));
+    deckEntity.setUpdate_Date(new Date(System.currentTimeMillis()));
+    deckRepository.save(deckEntity);
+  }
+  
+  @Transactional(readOnly = false)
+  public void deckInsert(DeckForm form) throws Exception {
+    DeckEntity deckEntity = new DeckEntity();
+//    deckEntity.setId(form.getId());
+    deckEntity.setDeckname(form.getDeckName());
+    deckEntity.setWin(form.getWin());
+    deckEntity.setDraw(form.getDraw());
+    deckEntity.setLose(form.getLose());
+    deckEntity.setCreate_Date(new Date(System.currentTimeMillis()));
+    deckEntity.setUpdate_Date(new Date(System.currentTimeMillis()));
+    deckRepository.save(deckEntity);
   }
 
   public void initView(DeckForm form, Model model) {
