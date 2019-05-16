@@ -18,23 +18,9 @@ public class InquiryController {
   @Autowired
   private Environment eivironment;
 
-  // @Autowired
-  // JdbcTemplate jdbcTemplate;
-
   @RequestMapping(value = "/inquiry/index")
   public String index(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
-
-    // List<Map<String, Object>> list;
-    // list = jdbcTemplate.queryForList("select * from mydeck");
-    // System.out.println(list.toString());
-    System.out.println("hostname=" + System.getenv("hostname"));
-    System.out.println("dbname=" + System.getenv("dbname"));
-    System.out.println("username=" + System.getenv("username"));
-    System.out.println("password=" + System.getenv("password"));
-
-    // 値の取得
-    System.out.println(eivironment.getProperty("spring.datasource.url"));
 
     return "inquiry/index";
   }
