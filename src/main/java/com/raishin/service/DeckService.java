@@ -21,6 +21,10 @@ public class DeckService {
   @Autowired
   DeckRepository deckRepository;
 
+  public List<DeckEntity> getAll(){
+    return deckRepository.findAllSort();
+  }
+
   @Transactional(readOnly = false)
   public void deckDelete(DeckForm form) {
     if (form.getId() != null) {
