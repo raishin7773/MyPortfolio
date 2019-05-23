@@ -80,6 +80,10 @@ public class DeckEntity {
     this.update_Date = update_Date;
   }
 
+  public int sum(){
+    return (win + lose + draw);
+  }
+
 
 
 }

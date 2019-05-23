@@ -1,5 +1,6 @@
 package com.raishin.controller;
 
+import com.raishin.entity.DeckEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,10 @@ import com.raishin.excel.DeckExcelBuilder;
 import com.raishin.form.DeckForm;
 import com.raishin.repository.DeckRepository;
 import com.raishin.service.DeckService;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DeckController {
@@ -63,7 +68,10 @@ public class DeckController {
   @RequestMapping(value = "/deck/excel")
   public ModelAndView excel(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) throws Exception {
-    ModelAndView mav = new ModelAndView(new DeckExcelBuilder());
+    List<DeckEntity> deckEntityList = deckService.getAll();
+    Map map = new HashMap<String,List<DeckEntity>>();
+    map.put("deckList",deckEntityList);
+    ModelAndView mav = new ModelAndView(new DeckExcelBuilder(),map);
     mav.addObject("fileName", "testExcel" + ".xls");
     return mav;
   }
