@@ -10,7 +10,7 @@ import com.raishin.form.DeckForm;
 @Controller
 public class CertificateController {
 
-  @RequestMapping(value = "/certificate/index")
+  @RequestMapping(value = "/portfolio/certificate/index")
   public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) {
     return "certificate/index";

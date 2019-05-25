@@ -31,14 +31,14 @@ public class DeckController {
 
 
 
-  @RequestMapping(value = "/deck/list")
+  @RequestMapping(value = "/portfolio/deck/list")
   public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) {
     deckService.initView(form, model);
     return "deck/starter";
   }
 
-  @RequestMapping(value = "/deck/delete")
+  @RequestMapping(value = "/portfolio/deck/delete")
   public String delete(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) {
     deckService.deckDelete(form);
@@ -47,7 +47,7 @@ public class DeckController {
     return "deck/starter";
   }
 
-  @RequestMapping(value = "/deck/update")
+  @RequestMapping(value = "/portfolio/deck/update")
   public String update(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) throws Exception {
     deckService.deckUpdate(form);
@@ -56,7 +56,7 @@ public class DeckController {
     return "deck/starter";
   }
   
-  @RequestMapping(value = "/deck/insert")
+  @RequestMapping(value = "/portfolio/deck/insert")
   public String insert(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) throws Exception {
     deckService.deckInsert(form);
@@ -65,7 +65,7 @@ public class DeckController {
     return "deck/starter";
   }
 
-  @RequestMapping(value = "/deck/excel")
+  @RequestMapping(value = "/portfolio/deck/excel")
   public ModelAndView excel(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) throws Exception {
     List<DeckEntity> deckEntityList = deckService.getAll();

@@ -31,7 +31,7 @@ public class UseToolsControllerTest {
     @Test
     public void getIndexTest() throws Exception {
         // when
-        mockMvc.perform(get("/useTools/index"))
+        mockMvc.perform(get("/portfolio/useTools/index"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("useTools/index"));
     }

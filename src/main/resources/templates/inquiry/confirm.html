@@ -18,7 +18,7 @@
 						<div class="callout callout-danger">
 							<h2 th:text="下記内容を送信しますか？"></h2>
 						</div>
-						<form th:action="@{/inquiry/confirm}" th:object="${inquiryForm}" method="post">
+						<form th:action="@{/portfolio/inquiry/confirm}" th:object="${inquiryForm}" method="post">
 							<div class="form-group">
 								<label>お名前</label> <label th:text="*{name}" class="form-control"></label>
 								<input type="hidden" name="name" th:value="*{name}">

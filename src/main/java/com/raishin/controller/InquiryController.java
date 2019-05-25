@@ -18,20 +18,20 @@ public class InquiryController {
   @Autowired
   private Environment eivironment;
 
-  @RequestMapping(value = "/inquiry/index")
+  @RequestMapping(value = "/portfolio/inquiry/index")
   public String index(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
 
     return "inquiry/index";
   }
 
-  @RequestMapping(value = "/inquiry/send")
+  @RequestMapping(value = "/portfolio/inquiry/send")
   public String send(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
     return "inquiry/confirm";
   }
 
-  @RequestMapping(value = "/inquiry/confirm", params = "cansel", method = RequestMethod.POST)
+  @RequestMapping(value = "/portfolio/inquiry/confirm", params = "cansel", method = RequestMethod.POST)
   public String cansel(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
 
@@ -41,7 +41,7 @@ public class InquiryController {
   @Autowired
   private MailSender sender;
 
-  @RequestMapping(value = "/inquiry/confirm", params = "send", method = RequestMethod.POST)
+  @RequestMapping(value = "/portfolio/inquiry/confirm", params = "send", method = RequestMethod.POST)
   public String sendmail(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
       Model model) {
     SimpleMailMessage msg = new SimpleMailMessage();
