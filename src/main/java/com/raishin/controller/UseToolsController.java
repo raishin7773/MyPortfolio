@@ -10,7 +10,7 @@ import com.raishin.form.DeckForm;
 @Controller
 public class UseToolsController {
 
-  @RequestMapping(value = "/useTools/index")
+  @RequestMapping(value = "/portfolio/useTools/index")
   public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
       Model model) {
     return "useTools/index";

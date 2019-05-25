@@ -61,7 +61,7 @@
 								<div class="pull-right">
 									<a class="btn btn-danger" data-toggle="modal" data-target="#insertModal">新規登録</a>
 									<a class="btn btn-primary">帳票出力</a>
-									<a th:href="@{/deck/excel}" class="btn btn-primary">エクセル出力</a>
+									<a th:href="@{/portfolio/deck/excel}" class="btn btn-primary">エクセル出力</a>
 								</div>
 							</div>
 							<div class="box-body">
@@ -118,7 +118,7 @@
 	</div>
 <!-- 登録モーダル -->
 <div class="modal" id="insertModal" tabindex="-1">
-	<form th:action="@{/deck/insert}" class="form-horizontal">
+	<form th:action="@{/portfolio/deck/insert}" class="form-horizontal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -161,7 +161,7 @@
 </div>
 <!-- 更新モーダル -->
 <div class="modal" id="updateModal" tabindex="-1">
-	<form th:action="@{/deck/update}" class="form-horizontal">
+	<form th:action="@{/portfolio/deck/update}" class="form-horizontal">
 		<input type="hidden" name="id" id="updateTargetId">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -211,7 +211,7 @@
 </div>
 <!-- 削除モーダル -->
 <div class="modal" id="deleteModal" tabindex="-1">
-	<form th:action="@{/deck/delete}">
+	<form th:action="@{/portfolio/deck/delete}">
 		<input type="hidden" name="id" id="deleteTargetId">
 		<div class="modal-dialog">
 			<div class="modal-content">

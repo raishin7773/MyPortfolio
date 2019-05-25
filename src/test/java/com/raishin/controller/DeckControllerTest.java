@@ -46,7 +46,7 @@ public class DeckControllerTest {
     @Test
     public void indexTest() throws Exception {
         doNothing().when(deckService).initView(any(),any());
-        mockMvc.perform(get("/deck/list"))
+        mockMvc.perform(get("/portfolio/deck/list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("deck/starter"));
     }
@@ -54,7 +54,7 @@ public class DeckControllerTest {
     public void deleteTest() throws Exception {
         doNothing().when(deckService).initView(any(),any());
         doNothing().when(deckService).deckDelete(any());
-        mockMvc.perform(get("/deck/delete"))
+        mockMvc.perform(get("/portfolio/deck/delete"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("message", "削除しました"))
                 .andExpect(view().name("deck/starter"));
@@ -64,7 +64,7 @@ public class DeckControllerTest {
     public void updateTest() throws Exception {
         doNothing().when(deckService).initView(any(),any());
         doNothing().when(deckService).deckUpdate(any());
-        mockMvc.perform(get("/deck/update"))
+        mockMvc.perform(get("/portfolio/deck/update"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("message", "更新しました"))
                 .andExpect(view().name("deck/starter"));
@@ -73,7 +73,7 @@ public class DeckControllerTest {
     public void insertTest() throws Exception {
         doNothing().when(deckService).initView(any(),any());
         doNothing().when(deckService).deckInsert(any());
-        mockMvc.perform(get("/deck/insert"))
+        mockMvc.perform(get("/portfolio/deck/insert"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("message", "更新しました"))
                 .andExpect(view().name("deck/starter"));
@@ -83,7 +83,7 @@ public class DeckControllerTest {
     public void excelTest() throws Exception {
         doNothing().when(deckService).initView(any(),any());
         doNothing().when(deckService).deckInsert(any());
-        mockMvc.perform(get("/deck/excel"))
+        mockMvc.perform(get("/portfolio/deck/excel"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("fileName", "testExcel.xls"));
     }

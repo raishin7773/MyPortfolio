@@ -2,7 +2,7 @@
 <configuration>
 
     <!-- デフォルト設定読み込み -->
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
+<!--    <include resource="org/springframework/boot/logging/logback/base.xml" />-->
 
     <property name="logFileName" value="app" />
 
@@ -44,13 +44,13 @@
         </encoder>
     </appender>
     
-    <logger name="com.raishin.mapper" additivity="false">
+    <logger name="com.raishin.repository" additivity="false">
         <level value="DEBUG" />
         <appender-ref ref="STDOUT" />
     </logger>
 
     <!--rootログレベルと使用出力ルール -->
-    <root level="INFO">
+    <root level="INFO" additivity="false">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>

@@ -15,14 +15,14 @@ public class MemoController {
   @Autowired
   MemoService service;
 
-  @RequestMapping(value = "/memo/index")
+  @RequestMapping(value = "/portfolio/memo/index")
   public String index(@ModelAttribute("memoForm") MemoForm form, BindingResult result,
       Model model) {
     service.initView(form);
     return "memo/index";
   }
 
-  @RequestMapping(value = "/memo/update")
+  @RequestMapping(value = "/portfolio/memo/update")
   public String update(@ModelAttribute("memoForm") MemoForm form, BindingResult result,
       Model model) {
     service.update(form);

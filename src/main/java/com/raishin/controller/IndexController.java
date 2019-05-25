@@ -12,7 +12,7 @@ public class IndexController {
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String index(@ModelAttribute("indexForm") IndexForm form, BindingResult result) {
-    return "redirect:/useTools/index";
+    return "redirect:/portfolio/useTools/index";
   }
 
 }
