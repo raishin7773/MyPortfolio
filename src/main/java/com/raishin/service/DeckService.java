@@ -3,6 +3,7 @@ package com.raishin.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.Date;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -93,18 +94,14 @@ public class DeckService {
 
         JRDataSource dataSource = new JRBeanCollectionDataSource(entityList);
 
-        //１で作ったjrxmlファイルのパス
-        String jrxmlFilePath = "jasper/deckReport.jrxml";
-
-        //jrxmlからコンパイルするjasperファイルの出力先
-        String jasperFilePath = "/static/jasper/deckReport.jasper";
-
         Map<String, Object> params = new HashMap<String, Object>();
 
         //jrxmlファイルをコンパイルする。
         try {
 
-            InputStream is = new FileInputStream(resourceLoader.getResource("classpath:static/jasper/deckReport.jrxml").getFile());
+            URL url = resourceLoader.getResource("classpath:static/jasper/deckReport.jrxml").getURL();
+
+            InputStream is = url.openStream();
             //コンパイル実行
             JasperReport jasperReport = JasperCompileManager.compileReport(is);
 
