@@ -60,7 +60,7 @@
 								<h3 class="box-title">所有デッキ一覧</h3>
 								<div class="pull-right">
 									<a class="btn btn-danger" data-toggle="modal" data-target="#insertModal">新規登録</a>
-									<a class="btn btn-primary">帳票出力</a>
+									<a th:href="@{/portfolio/deck/createPdf}" target="_blank" class="btn btn-primary">帳票出力</a>
 									<a th:href="@{/portfolio/deck/excel}" class="btn btn-primary">エクセル出力</a>
 								</div>
 							</div>

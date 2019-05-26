@@ -1,6 +1,7 @@
 package com.raishin.controller;
 
 import com.raishin.entity.DeckEntity;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,9 @@ import com.raishin.form.DeckForm;
 import com.raishin.repository.DeckRepository;
 import com.raishin.service.DeckService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +67,15 @@ public class DeckController {
     model.addAttribute("message", "更新しました");
     deckService.initView(form, model);
     return "deck/starter";
+  }
+  @RequestMapping(value = "/portfolio/deck/createPdf")
+  public void createPdf(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+                          Model model, HttpServletResponse response) throws Exception {
+    deckService.createPdf();
+    byte[] b = deckService.createPdf();
+    InputStream is = new ByteArrayInputStream(b);
+    IOUtils.copy(is,response.getOutputStream());
+    response.flushBuffer();
   }
 
   @RequestMapping(value = "/portfolio/deck/excel")
