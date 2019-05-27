@@ -11,8 +11,14 @@ import com.raishin.form.IndexForm;
 public class IndexController {
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String index(@ModelAttribute("indexForm") IndexForm form, BindingResult result) {
+  public String index(@ModelAttribute("indexForm") IndexForm form, BindingResult result) throws Exception{
+
     return "redirect:/portfolio/useTools/index";
+  }
+
+  @RequestMapping(value = "portfolio/error", method = RequestMethod.GET)
+  public String error(@ModelAttribute("indexForm") IndexForm form, BindingResult result) throws Exception {
+    throw new Exception("エラー発生");
   }
 
 }

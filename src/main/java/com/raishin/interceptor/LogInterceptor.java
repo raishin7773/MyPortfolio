@@ -14,7 +14,12 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info( ((HandlerMethod)handler).getMethod().getDeclaringClass().getName() + "が作動しました");
+
+        try {
+            logger.info( ((HandlerMethod)handler).getMethod().getDeclaringClass().getName() + "が作動しました");
+        } catch(Exception e) {
+            logger.info( (handler.getClass() + "が作動しました"));
+        }
         return true;
     }
 }
