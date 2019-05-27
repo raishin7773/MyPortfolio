@@ -14,14 +14,14 @@ public class MemoService {
   @Autowired
   MemoRepository memoRepository;
 
-  public void initView(MemoForm form) {
+  public void initView(MemoForm form) throws Exception{
     MemoEntity memoEntity = memoRepository.findById(0);
     if (memoEntity == null) return;
     form.setMemo(memoEntity.getMemo());
   }
   
   @Transactional(readOnly = false)
-  public void update(MemoForm form) {
+  public void update(MemoForm form) throws Exception{
     MemoEntity memoEntity = memoRepository.findById(0);
     if (memoEntity == null) memoEntity = new MemoEntity();
     memoEntity.setMemo(form.getMemo());

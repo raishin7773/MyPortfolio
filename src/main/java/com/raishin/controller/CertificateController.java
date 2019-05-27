@@ -12,7 +12,7 @@ public class CertificateController {
 
   @RequestMapping(value = "/portfolio/certificate/index")
   public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
-      Model model) {
+      Model model) throws Exception{
     return "certificate/index";
   }
 }

@@ -12,7 +12,7 @@ public class UseToolsController {
 
   @RequestMapping(value = "/portfolio/useTools/index")
   public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
-      Model model) {
+      Model model)  throws Exception{
     return "useTools/index";
   }
 }

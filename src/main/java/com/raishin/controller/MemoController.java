@@ -17,14 +17,14 @@ public class MemoController {
 
   @RequestMapping(value = "/portfolio/memo/index")
   public String index(@ModelAttribute("memoForm") MemoForm form, BindingResult result,
-      Model model) {
+      Model model)  throws Exception{
     service.initView(form);
     return "memo/index";
   }
 
   @RequestMapping(value = "/portfolio/memo/update")
   public String update(@ModelAttribute("memoForm") MemoForm form, BindingResult result,
-      Model model) {
+      Model model)  throws Exception{
     service.update(form);
     return "memo/index";
   }

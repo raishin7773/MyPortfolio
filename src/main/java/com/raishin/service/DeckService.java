@@ -35,7 +35,7 @@ public class DeckService {
     }
 
     @Transactional(readOnly = false)
-    public void deckDelete(DeckForm form) {
+    public void deckDelete(DeckForm form) throws Exception {
         if (form.getId() != null) {
             deckRepository.deleteById(form.getId());
         }
@@ -68,7 +68,7 @@ public class DeckService {
         deckRepository.save(deckEntity);
     }
 
-    public void initView(DeckForm form, Model model) {
+    public void initView(DeckForm form, Model model) throws Exception {
         Random random = new Random();
         List<String> decknameList = new ArrayList<>();
         List<String> backColorList = new ArrayList<>();
@@ -89,7 +89,7 @@ public class DeckService {
         form.setDeckList(entityList);
     }
 
-    public byte[] createPdf() {
+    public byte[] createPdf() throws Exception {
         List<DeckEntity> entityList = deckRepository.findAllSort();
 
         JRDataSource dataSource = new JRBeanCollectionDataSource(entityList);
@@ -97,21 +97,15 @@ public class DeckService {
         Map<String, Object> params = new HashMap<String, Object>();
 
         //jrxmlファイルをコンパイルする。
-        try {
+        URL url = resourceLoader.getResource("classpath:static/jasper/deckReport.jrxml").getURL();
 
-            URL url = resourceLoader.getResource("classpath:static/jasper/deckReport.jrxml").getURL();
+        InputStream is = url.openStream();
+        //コンパイル実行
+        JasperReport jasperReport = JasperCompileManager.compileReport(is);
 
-            InputStream is = url.openStream();
-            //コンパイル実行
-            JasperReport jasperReport = JasperCompileManager.compileReport(is);
+        JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, null, dataSource);
 
-            JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, null, dataSource);
-
-            return JasperExportManager.exportReportToPdf(jasperprint);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return JasperExportManager.exportReportToPdf(jasperprint);
 
     }
 }

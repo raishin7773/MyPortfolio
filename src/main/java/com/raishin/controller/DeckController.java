@@ -24,68 +24,68 @@ import java.util.Map;
 @Controller
 public class DeckController {
 
-  // @Autowired
-  // DeckMapper mapper;
+    // @Autowired
+    // DeckMapper mapper;
 
-  @Autowired
-  DeckRepository deckRepository;
+    @Autowired
+    DeckRepository deckRepository;
 
-  @Autowired
-  DeckService deckService;
+    @Autowired
+    DeckService deckService;
 
 
+    @RequestMapping(value = "/portfolio/deck/list")
+    public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+                        Model model) throws Exception {
+        deckService.initView(form, model);
+        return "deck/starter";
+    }
 
-  @RequestMapping(value = "/portfolio/deck/list")
-  public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
-      Model model) {
-    deckService.initView(form, model);
-    return "deck/starter";
-  }
+    @RequestMapping(value = "/portfolio/deck/delete")
+    public String delete(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+                         Model model) throws Exception {
+        deckService.deckDelete(form);
+        model.addAttribute("message", "削除しました");
+        deckService.initView(form, model);
+        return "deck/starter";
+    }
 
-  @RequestMapping(value = "/portfolio/deck/delete")
-  public String delete(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
-      Model model) {
-    deckService.deckDelete(form);
-    model.addAttribute("message", "削除しました");
-    deckService.initView(form, model);
-    return "deck/starter";
-  }
+    @RequestMapping(value = "/portfolio/deck/update")
+    public String update(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+                         Model model) throws Exception {
+        deckService.deckUpdate(form);
+        model.addAttribute("message", "更新しました");
+        deckService.initView(form, model);
+        return "deck/starter";
+    }
 
-  @RequestMapping(value = "/portfolio/deck/update")
-  public String update(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
-      Model model) throws Exception {
-    deckService.deckUpdate(form);
-    model.addAttribute("message", "更新しました");
-    deckService.initView(form, model);
-    return "deck/starter";
-  }
-  
-  @RequestMapping(value = "/portfolio/deck/insert")
-  public String insert(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
-      Model model) throws Exception {
-    deckService.deckInsert(form);
-    model.addAttribute("message", "更新しました");
-    deckService.initView(form, model);
-    return "deck/starter";
-  }
-  @RequestMapping(value = "/portfolio/deck/createPdf")
-  public void createPdf(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+    @RequestMapping(value = "/portfolio/deck/insert")
+    public String insert(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+                         Model model) throws Exception {
+        deckService.deckInsert(form);
+        model.addAttribute("message", "更新しました");
+        deckService.initView(form, model);
+        return "deck/starter";
+    }
+
+    @RequestMapping(value = "/portfolio/deck/createPdf")
+    public void createPdf(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                           Model model, HttpServletResponse response) throws Exception {
-    deckService.createPdf();
-    byte[] b = deckService.createPdf();
-    InputStream is = new ByteArrayInputStream(b);
-    IOUtils.copy(is,response.getOutputStream());
-    response.flushBuffer();
-  }
+        deckService.createPdf();
+        byte[] b = deckService.createPdf();
+        InputStream is = new ByteArrayInputStream(b);
+        IOUtils.copy(is, response.getOutputStream());
+        response.flushBuffer();
+    }
 
-  @RequestMapping(value = "/portfolio/deck/excel")
-  public ModelAndView excel(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
-      Model model) throws Exception {
-    List<DeckEntity> deckEntityList = deckService.getAll();
-    Map map = new HashMap<String,List<DeckEntity>>();
-    map.put("deckList",deckEntityList);
-    ModelAndView mav = new ModelAndView(new DeckExcelBuilder(),map);
-    mav.addObject("fileName", "testExcel" + ".xls");
-    return mav;
-  }
+    @RequestMapping(value = "/portfolio/deck/excel")
+    public ModelAndView excel(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
+                              Model model) throws Exception {
+        List<DeckEntity> deckEntityList = deckService.getAll();
+        Map map = new HashMap<String, List<DeckEntity>>();
+        map.put("deckList", deckEntityList);
+        ModelAndView mav = new ModelAndView(new DeckExcelBuilder(), map);
+        mav.addObject("fileName", "testExcel" + ".xls");
+        return mav;
+    }
 }
