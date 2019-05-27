@@ -85,7 +85,7 @@ public class DeckController {
         Map map = new HashMap<String, List<DeckEntity>>();
         map.put("deckList", deckEntityList);
         ModelAndView mav = new ModelAndView(new DeckExcelBuilder(), map);
-        mav.addObject("fileName", "testExcel" + ".xls");
+        mav.addObject("fileName", "デッキ一覧" + ".xls");
         return mav;
     }
 }

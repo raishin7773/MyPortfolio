@@ -85,7 +85,7 @@ public class DeckControllerTest {
         doNothing().when(deckService).deckInsert(any());
         mockMvc.perform(get("/portfolio/deck/excel"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("fileName", "testExcel.xls"));
+                .andExpect(model().attribute("fileName", "デッキ一覧.xls"));
     }
 
 }
