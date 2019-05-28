@@ -8,6 +8,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * ログ出力用インターセプター
+ */
 public class LogInterceptor extends HandlerInterceptorAdapter {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -20,6 +20,9 @@ import com.raishin.entity.DeckEntity;
 import com.raishin.form.DeckForm;
 import com.raishin.repository.DeckRepository;
 
+/**
+ * デッキ一覧画面用サービス
+ */
 @Service
 @Transactional(readOnly = true)
 public class DeckService {
@@ -30,10 +33,19 @@ public class DeckService {
     @Autowired
     ResourceLoader resourceLoader;
 
+    /**
+     * 全てのデッキを決闘数の降順で取得
+     * @return
+     */
     public List<DeckEntity> getAll() {
         return deckRepository.findAllSort();
     }
 
+    /**
+     * 対象のデッキを削除
+     * @param form
+     * @throws Exception
+     */
     @Transactional(readOnly = false)
     public void deckDelete(DeckForm form) throws Exception {
         if (form.getId() != null) {
@@ -41,6 +53,11 @@ public class DeckService {
         }
     }
 
+    /**
+     * 対象のデッキを更新
+     * @param form
+     * @throws Exception
+     */
     @Transactional(readOnly = false)
     public void deckUpdate(DeckForm form) throws Exception {
         DeckEntity deckEntity = new DeckEntity();
@@ -55,6 +72,11 @@ public class DeckService {
         deckRepository.save(deckEntity);
     }
 
+    /**
+     * デッキを新規作成
+     * @param form
+     * @throws Exception
+     */
     @Transactional(readOnly = false)
     public void deckInsert(DeckForm form) throws Exception {
         DeckEntity deckEntity = new DeckEntity();
@@ -68,6 +90,12 @@ public class DeckService {
         deckRepository.save(deckEntity);
     }
 
+    /**
+     * デッキ一覧初期表示用メソッド
+     * @param form
+     * @param model
+     * @throws Exception
+     */
     public void initView(DeckForm form, Model model) throws Exception {
         Random random = new Random();
         List<String> decknameList = new ArrayList<>();
@@ -89,6 +117,11 @@ public class DeckService {
         form.setDeckList(entityList);
     }
 
+    /**
+     * 帳票作成
+     * @return
+     * @throws Exception
+     */
     public byte[] createPdf() throws Exception {
         List<DeckEntity> entityList = deckRepository.findAllSort();
 

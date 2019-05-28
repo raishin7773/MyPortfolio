@@ -22,6 +22,9 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * デッキ一覧画面テスト
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class DeckControllerTest {
@@ -37,6 +40,9 @@ public class DeckControllerTest {
 
     private MockMvc mockMvc;
 
+    /**
+     * 事前準備
+     */
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);

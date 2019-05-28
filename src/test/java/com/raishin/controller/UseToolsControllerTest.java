@@ -14,6 +14,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+/**
+ * 使用技術画面テスト
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class UseToolsControllerTest {
@@ -23,6 +26,9 @@ public class UseToolsControllerTest {
 
     private MockMvc mockMvc;
 
+    /**
+     * 事前準備
+     */
     @Before
     public void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(target).build();

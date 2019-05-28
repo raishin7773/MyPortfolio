@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 所有デッキ一覧コントローラー
+ */
 @Controller
 public class DeckController {
 
@@ -34,6 +37,14 @@ public class DeckController {
     DeckService deckService;
 
 
+    /**
+     * 初期表示メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/deck/list")
     public String index(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                         Model model) throws Exception {
@@ -41,6 +52,14 @@ public class DeckController {
         return "deck/starter";
     }
 
+    /**
+     * デッキ削除メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/deck/delete")
     public String delete(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                          Model model) throws Exception {
@@ -50,6 +69,14 @@ public class DeckController {
         return "deck/starter";
     }
 
+    /**
+     * デッキ更新メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/deck/update")
     public String update(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                          Model model) throws Exception {
@@ -59,6 +86,14 @@ public class DeckController {
         return "deck/starter";
     }
 
+    /**
+     * デッキ新規作成メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/deck/insert")
     public String insert(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                          Model model) throws Exception {
@@ -68,6 +103,14 @@ public class DeckController {
         return "deck/starter";
     }
 
+    /**
+     * 帳票作成メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @param response
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/deck/createPdf")
     public void createPdf(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                           Model model, HttpServletResponse response) throws Exception {
@@ -78,6 +121,14 @@ public class DeckController {
         response.flushBuffer();
     }
 
+    /**
+     * エクセル出力メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/deck/excel")
     public ModelAndView excel(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                               Model model) throws Exception {

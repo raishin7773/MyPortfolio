@@ -9,10 +9,19 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-@SuppressWarnings("deprecation")
+/**
+ * 設定
+ */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
+    /**
+     * LocalValidatorFactoryBeanのsetValidationMessageSourceで
+     * バリデーションメッセージをValidationMessages.propertiesからSpringの
+     * MessageSource(messages.properties)に上書きする
+     *
+     * @return localValidatorFactoryBean
+     */
     @Bean(name="validator")
     public LocalValidatorFactoryBean localValidatorFactoryBean() {
         LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
@@ -33,6 +42,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return bean;
     }
 
+    /**
+     * ログ用インターセプターの登録
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LogInterceptor()).addPathPatterns("/portfolio/**");

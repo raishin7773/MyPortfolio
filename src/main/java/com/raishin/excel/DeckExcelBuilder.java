@@ -14,6 +14,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
+/**
+ * エクセル出力用クラス
+ */
 public class DeckExcelBuilder extends AbstractXlsView {
 
     public final int DECK_NAME_COLUMN = 0;

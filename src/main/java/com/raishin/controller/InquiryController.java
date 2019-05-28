@@ -12,12 +12,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.raishin.form.InquiryForm;
 
+/**
+ * 問い合わせ画面コントローラー
+ */
 @Controller
 public class InquiryController {
 
     @Autowired
     private Environment eivironment;
 
+    /**
+     * 初期表示メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/inquiry/index")
     public String index(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
                         Model model) throws Exception {
@@ -25,12 +36,28 @@ public class InquiryController {
         return "inquiry/index";
     }
 
+    /**
+     * 問い合わせ確認画面遷移用メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/inquiry/send")
     public String send(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
                        Model model) throws Exception {
         return "inquiry/confirm";
     }
 
+    /**
+     * 問い合わせキャンセル用メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/inquiry/confirm", params = "cansel", method = RequestMethod.POST)
     public String cansel(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
                          Model model) throws Exception {
@@ -41,6 +68,14 @@ public class InquiryController {
     @Autowired
     private MailSender sender;
 
+    /**
+     * 問い合わせ送信メソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/portfolio/inquiry/confirm", params = "send", method = RequestMethod.POST)
     public String sendmail(@ModelAttribute("inquiryForm") InquiryForm form, BindingResult result,
                            Model model) throws Exception {
