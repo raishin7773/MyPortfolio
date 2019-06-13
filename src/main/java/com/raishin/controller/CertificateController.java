@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.raishin.form.DeckForm;
 
 /**
- * 所有資格コントローラー
+ * 所有資格コントローラーA
  */
 @Controller
 public class CertificateController {
