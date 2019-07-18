@@ -48,6 +48,21 @@
 			<artifactId>jasperreports</artifactId>
 		</dependency>
 
+		<!--jgiven-->
+		<dependency>
+			<groupId>com.tngtech.jgiven</groupId>
+			<artifactId>jgiven-junit</artifactId>
+			<version>0.17.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.tngtech.jgiven/jgiven-spring -->
+		<dependency>
+			<groupId>com.tngtech.jgiven</groupId>
+			<artifactId>jgiven-spring</artifactId>
+			<version>0.17.0</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -114,8 +129,22 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.tngtech.jgiven</groupId>
+				<artifactId>jgiven-maven-plugin</artifactId>
+				<version>0.17.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<format>html</format>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
