@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,9 @@ public class DeckService {
      * 全てのデッキを決闘数の降順で取得
      * @return
      */
+    @Cacheable(value = "sample")
     public List<DeckEntity> getAll() {
+        System.out.println("getAll通過");
         return deckRepository.findAllSort();
     }
 
@@ -96,7 +99,7 @@ public class DeckService {
      * @param model
      * @throws Exception
      */
-    public void initView(DeckForm form, Model model) throws Exception {
+    public String initView(DeckForm form, Model model) throws Exception {
         Random random = new Random();
         List<String> decknameList = new ArrayList<>();
         List<String> backColorList = new ArrayList<>();
@@ -115,6 +118,8 @@ public class DeckService {
         model.addAttribute("TopFiveNumberList",
                 duelNumberList.stream().limit(5).collect(Collectors.toList()));
         form.setDeckList(entityList);
+        System.out.println("initView通過");
+        return "キャッシュ聞いていない";
     }
 
     /**
