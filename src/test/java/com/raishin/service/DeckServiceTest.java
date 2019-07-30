@@ -1,41 +1,38 @@
 package com.raishin.service;
 
+import com.raishin.config.CacheConfig;
 import com.raishin.entity.DeckEntity;
-import com.raishin.form.DeckForm;
 import com.raishin.repository.DeckRepository;
-import org.hibernate.validator.constraints.ModCheck;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.interceptor.SimpleKey;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.ui.ConcurrentModel;
-import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
+
+
 
 @RunWith(SpringRunner.class)
+// Cacheを使用するために必要
 @EnableCaching
+// testで使用するBeanが定義されたクラスを読み込む
+@ContextConfiguration(classes = CacheConfig.class)
 public class DeckServiceTest {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -53,24 +50,21 @@ public class DeckServiceTest {
 
     List<DeckEntity> deckEntityList;
 
+
     private void putCache() {
         //キャッシュを取得
         Cache cache = cacheManager.getCache("sample");
         //キー：引数なし、値：作成したデッキリストをキャッシュにセット
-        cache.put(SimpleKey.EMPTY,deckEntityList);
+        cache.put(SimpleKey.EMPTY, deckEntityList);
         //対象のキーでキャッシュの値を取得して表示
         logger.info(cache.get(SimpleKey.EMPTY).get().toString());
     }
 
     //必要なBeanを定義
     @TestConfiguration
+    // 書いたBeanをDIコンテナに格納
     @EnableConfigurationProperties
     public static class Config {
-
-        @Bean
-        public CacheManager cacheManager() {
-            return new ConcurrentMapCacheManager("sample");
-        }
 
         @Bean
         DeckService deckService() {
@@ -110,6 +104,7 @@ public class DeckServiceTest {
 
     /**
      * 事前にキャッシュにPutした値が取得できるか確認するテスト
+     *
      * @throws Exception
      */
     @Test
@@ -118,7 +113,7 @@ public class DeckServiceTest {
         putCache();
         //@Cacheableが付与されたメソッドをコール
         List<DeckEntity> deckList = deckService.getAll();
-        assertEquals(deckEntityList,deckList);
+        assertEquals(deckEntityList, deckList);
 
     }
 }
