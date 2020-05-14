@@ -114,7 +114,6 @@ public class DeckController {
     @RequestMapping(value = "/portfolio/deck/createPdf")
     public void createPdf(@ModelAttribute("deckForm") DeckForm form, BindingResult result,
                           Model model, HttpServletResponse response) throws Exception {
-        deckService.createPdf();
         byte[] b = deckService.createPdf();
         InputStream is = new ByteArrayInputStream(b);
         IOUtils.copy(is, response.getOutputStream());
